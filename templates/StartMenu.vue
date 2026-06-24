@@ -35,7 +35,7 @@
             </div>
         </a>
         <div class="divider"></div>
-        <a href="/files/resume.pdf" target="_blank">
+        <a :href="`${useRuntimeConfig().app.baseURL}files/resume.pdf`" target="_blank">
             <div class="bar">
                 <img class="social-image" src="@/assets/win95Icons/resume.png" />
                 <u>R</u>ésumé

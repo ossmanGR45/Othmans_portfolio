@@ -86,7 +86,7 @@
 
     <div class="pt-7">
         <h3 class="pb-1"><b>Résumé</b></h3>
-        <a style="color: #ff5733" href="/files/resume.pdf" class="font-thin text-sm pb-2.5" target="_blank">Check out my résumé here.</a>
+        <a style="color: #ff5733" :href="`${useRuntimeConfig().app.baseURL}files/resume.pdf`" class="font-thin text-sm pb-2.5" target="_blank">Check out my résumé here.</a>
     </div>
 </div>
 </template>

@@ -10,7 +10,7 @@
         <div class="relative border-2 border-dashed border-gray-500 bg-gray-200 flex flex-col items-center justify-center p-4 min-h-[220px]">
             <!-- Attempts to load the user's certificate image -->
             <img 
-                :src="'/files/icpc2023_cert.png'" 
+                :src="`${useRuntimeConfig().app.baseURL}files/icpc2023_cert.png`" 
                 alt="ICPC 2023 Certificate" 
                 class="w-full h-auto max-h-[300px] object-contain border border-gray-400 shadow-sm"
                 @error="imageLoadError = true"
