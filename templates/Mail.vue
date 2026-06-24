@@ -242,7 +242,7 @@ onMounted(() => {
             'minimize': window.fullscreen == 'minimize',
         }" @click="setActiveWindow" @dragstart="setActiveWindow" @click.native="setActiveWindow">
     <iframe name="hidden_iframe" id="hidden_iframe" style="display: none"></iframe>
-    <form @submit="sendEmail" action="https://docs.google.com/forms/d/e/1FAIpQLScLw40_soPoVWMeX7bCO3mfY30JO5BY3d9fRLDy3t_j_qxItA/viewform?usp=dialog" class="window-style" id="container" target="hidden_iframe">
+    <form @submit="sendEmail" action="https://docs.google.com/forms/d/e/1FAIpQLScLw40_soPoVWMeX7bCO3mfY30JO5BY3d9fRLDy3t_j_qxItA/formResponse" class="window-style" id="container" target="hidden_iframe">
         <div id="top-bar" class="top-bar-window" :class="
             windowsStore.activeWindow == window.windowId
                 ? 'top-bar'
@@ -300,16 +300,16 @@ onMounted(() => {
                 <hr />
                 <div class="subject-container">
                     <p style="margin: 8px">Subject:</p>
-                    <input name="entry.609946071" class="subject" v-model="mailSubject" v-on:input="onChangeMailSubject" type="text" required="true" />
+                    <input name="entry.207115346" class="subject" v-model="mailSubject" v-on:input="onChangeMailSubject" type="text" required="true" />
                 </div>
                 <hr />
                 <div class="from-container" style="margin-bottom: 2px">
                     <p style="margin: 8px">From:</p>
-                    <input name="entry.367924729" class="subject" v-model="mailSender" v-on:input="onChangeMailSender" type="email" required="true" />
+                    <input name="entry.747177115" class="subject" v-model="mailSender" v-on:input="onChangeMailSender" type="email" required="true" />
                 </div>
             </div>
 
-            <textarea name="entry.863594021" v-model="mailContent" v-on:input="onChangeMailContent" required="true"></textarea>
+            <textarea name="entry.1087419918" v-model="mailContent" v-on:input="onChangeMailContent" required="true"></textarea>
         </div>
     </form>
 </div>
