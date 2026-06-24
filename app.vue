@@ -6,10 +6,12 @@ import Navbar from './templates/Navbar.vue'
 import AppGrid from './templates/AppGrid.vue'
 import Bio from './views/Bio.vue'
 import Resume from './views/Resume.vue'
-import Nossaflex from './views/Nossaflex.vue'
+
 import Wwdc2021 from './views/Wwdc2021.vue'
 import Wwdc2022 from './views/Wwdc2022.vue'
 import Wwdc2023 from './views/Wwdc2023.vue'
+import Icpc2023 from './views/Icpc2023.vue'
+import Icpc2024 from './views/Icpc2024.vue'
 import ImagePreviewWindow from './templates/ImagePreviewWindow.vue'
 import StartMenu from './templates/StartMenu.vue'
 import {
@@ -28,10 +30,12 @@ const windowComponents = [
 const slotViews = [
   { name: 'bio', comp: Bio },
   { name: 'resume', comp: Resume },
-  { name: 'nossaflex', comp: Nossaflex },
+
   { name: 'wwdc2021', comp: Wwdc2021 },
   { name: 'wwdc2022', comp: Wwdc2022 },
-  { name: 'wwdc2023', comp: Wwdc2023 }
+  { name: 'wwdc2023', comp: Wwdc2023 },
+  { name: 'icpc2023', comp: Icpc2023 },
+  { name: 'icpc2024', comp: Icpc2024 }
 ]
 
 const windowCheck = (windowId) => {

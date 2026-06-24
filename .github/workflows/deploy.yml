@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies 🔧
+        run: npm ci
+
+      - name: Static HTML Generation 🏗️
+        run: |
+          if [ "${{ github.event.repository.name }}" = "${{ github.repository_owner }}.github.io" ]; then
+            export NUXT_APP_BASE_URL="/"
+          else
+            export NUXT_APP_BASE_URL="/${{ github.event.repository.name }}/"
+          fi
+          echo "Setting baseURL to: $NUXT_APP_BASE_URL"
+          npm run generate
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .output/public
+          branch: gh-pages

@@ -1,44 +1,29 @@
 <template>
 <div>
     <img class="w-full h-auto" src="@/assets/Biography/self.jpg" />
-    <h2 class="font-bold text-2xl py-5">Don Chia (谢祺恩)</h2>
+    <h2 class="font-bold text-2xl py-5">Othman Qwakneh</h2>
     <h4 class="text-gray-600 font-medium text-xs" style="padding-bottom: 10px">
-        CTO @ Randamu Anime •  Apple WWDC 2021 & 2022 SSC Scholar
+        Web & Mobile Software Engineer • ASP.NET Core & Flutter
     </h4>
-    <h4 class="text-gray-600 font-medium text-xs">Singapore 📍</h4>
+    <h4 class="text-gray-600 font-medium text-xs">Amman, Jordan 📍</h4>
 
     <div class="flex flex-wrap mt-5 gap-2 items-center">
-        <img class="w-auto h-5 rounded-none text-xs" alt="Swift" src="https://img.shields.io/badge/-Swift-orange" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="Python" src="https://img.shields.io/badge/-Python-blue" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="JavaScript" src="https://img.shields.io/badge/-Javascript-yellow" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="SQL" src="https://img.shields.io/badge/-SQL-lightgrey" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="Git" src="https://img.shields.io/badge/-Git-critical" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="HTML/CSS" src="https://img.shields.io/badge/-HTML%2FCSS-yellowgreen" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="SwiftUI" src="https://img.shields.io/badge/-SwiftUI-3e8bc3" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="React Native" src="https://img.shields.io/badge/-React%20Native-blue" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="Vue" src="https://img.shields.io/badge/-VueJS-61b083" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="Flask" src="https://img.shields.io/badge/-Flask-406893" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="MongoDB" src="https://img.shields.io/badge/-MongoDB-4ca158" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="SQLite" src="https://img.shields.io/badge/-SQLite-64a2c9" />
-        <img class="w-auto h-5 rounded-none text-xs" alt="Figma" src="https://img.shields.io/badge/-Figma-8c5aee" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="C++" src="https://img.shields.io/badge/-C%2B%2B-blue" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="Dart" src="https://img.shields.io/badge/-Dart-0175C2?logo=dart" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="C#" src="https://img.shields.io/badge/-C%23-239120?logo=c-sharp" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="ASP.NET Core" src="https://img.shields.io/badge/-ASP.NET%20Core-512BD4?logo=.net" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="Flutter" src="https://img.shields.io/badge/-Flutter-02569B?logo=flutter" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="React" src="https://img.shields.io/badge/-React-61DAFB?logo=react" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="Firebase" src="https://img.shields.io/badge/-Firebase-FFCA28?logo=firebase" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="HTML5" src="https://img.shields.io/badge/-HTML5-E34F26?logo=html5" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="CSS3" src="https://img.shields.io/badge/-CSS3-1572B6?logo=css3" />
+        <img class="w-auto h-5 rounded-none text-xs" alt="JavaScript" src="https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript" />
     </div>
 
     <div class="pt-7">
         <h3 class="underline font-bold text-md pb-1">About Me</h3>
         <p class="font-thin text-sm pb-2.5">
-            I’m a {{ new Date().getFullYear() - 2003 }} year old software engineer who’s a React Native and Vue.JS engineer by day but a native iOS developer by night. Crafting impactful software that serves my community and people around me is my passion.
-        </p>
-        <p class="font-thin text-sm pb-2.5">
-            I thrive on staying updated with the latest design trends and development frameworks across all platforms. While my heart lies in native app design and development, I also excel in cross-platform app and web development, which keeps the bills paid.
-        </p>
-        <p class="font-thin text-sm pb-2.5">
-            At 17, I co-founded NOSSAFLEX with developers from Australia and the US. Since then, it has garnered attention, being featured on local television, Apple’s annual Entrepreneur Camp, and earning a nomination from Apple’s regional team for their annual design awards.
-        </p>
-        <p class="font-thin text-sm pb-2.5">
-            Having collaborated with diverse companies worldwide, from e-commerce to art and design industries, I've honed the ability to manage multiple projects simultaneously across various time zones.
-        </p>
-        <p class="font-thin text-sm pb-2.5">
-            In my spare time, I indulge in scrolling through analog camera listings or admiring my collection, although shooting has taken a backseat due to my various work commitments.
+            I am a Web & Mobile Software Engineer specializing in full-stack development with C# (ASP.NET Core) and Dart (Flutter). Graduated from the University of Jordan. Driven by a passion for understanding underlying software mechanics and architectural patterns, I thrive in agile environments where I can architect robust, scalable systems. With a strong foundation in C++ and a continuous drive for problem-solving, I am dedicated to bridging the gap between complex backend logic and seamless cross-platform user experiences.
         </p>
     </div>
 
@@ -47,56 +32,10 @@
     </div>
 
     <section class="pt-6">
-        <h4 class="text-lg font-semibold">Randamu Anime</h4>
-        <p class="text-gray-600 text-xs">CTO • Jan 2025 – Present • Ho Chi Minh City, VN & Singapore, SG</p>
+        <h4 class="text-lg font-semibold">Tulips Technology</h4>
+        <p class="text-gray-600 text-xs">Software Engineering Intern • 16 April 2026 – 16 July 2026 • Amman, Jordan</p>
         <ul class="list-disc pl-5 mt-2 space-y-1 text-sm font-thin">
-            <li>Organized and supervised the design and implementation of Randamu’s digital marketplace using React. Optimized architecture and user experience.</li>
-            <li>Collaborated with the Marketing and Events team to run the first creator event at Orchard with thousands of attendees and hundreds of vendors.</li>
-            <li>Attended an IP and Licensing Expo in Shanghai. Built APAC licensing network and signed a licensed creator for Randamu.</li>
-            <li>Backed by Enterprise SG and incubated under Ngee Ann Polytechnic’s AGILE program.</li>
-        </ul>
-    </section>
-
-    <section class="pt-6">
-        <h4 class="text-lg font-semibold">NOSSAFLEX</h4>
-        <p class="text-gray-600 text-xs">iOS Engineer • May 2020 – Aug 2025 • Melbourne, AU & Fredericksburg, USA</p>
-        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm font-thin">
-            <li>Led iOS frontend development in a cross-border team across the US and Australia.</li>
-            <li>Partnered with the lead designer to ship a polished iOS experience aligned with Apple HIG.</li>
-            <li>Consulted Apple Design Evangelist and applied MVVM for clean architecture.</li>
-            <li>Stack included UIKit, SwiftUI, AVFoundation, Core Data, and Firebase.</li>
-        </ul>
-    </section>
-
-    <section class="pt-6">
-        <h4 class="text-lg font-semibold">SAF Signals Cloud & Digital Office</h4>
-        <p class="text-gray-600 text-xs">Software Engineer • Nov 2023 – Aug 2024 • Singapore, SG</p>
-        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm font-thin">
-            <li>Co-founded the Digital Office in Signals Corps with regulars. Office formally launched in 2025 with command structure and MINDEF funding.</li>
-            <li>Built apps with React Native, Firebase, and Flask. Deployed tools to troopers overseas.</li>
-            <li>Recognized by Chief of Army, Chief Signals Officer, and formation leaders.</li>
-            <li>Worked with Kotlin Jetpack Compose, SwiftUI, Vue3, Pinia, and TailwindCSS.</li>
-        </ul>
-    </section>
-
-    <section class="pt-6">
-        <h4 class="text-lg font-semibold">Fundigo Co.</h4>
-        <p class="text-gray-600 text-xs">Project Manager & Fullstack Web Developer • Jun 2022 – Dec 2024 • Singapore, SG</p>
-        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm font-thin">
-            <li>Led a small international SEA team to deliver quality code and reliable releases.</li>
-            <li>Revamped cross-platform UI using Material 3 to improve engagement and clarity.</li>
-            <li>Built merchant portal with Vite, Vue3, and Pinia. Applied MVVM patterns with TailwindCSS.</li>
-            <li>Funded by Quest Ventures and incubated under SUSS Accelerator.</li>
-        </ul>
-    </section>
-
-    <section class="pt-6">
-        <h4 class="text-lg font-semibold">Current Mobility</h4>
-        <p class="text-gray-600 text-xs">iOS Engineer • Oct 2023 – Mar 2024 • Palo Alto, USA</p>
-        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm font-thin">
-            <li>Shipped an EV charging discovery app using SwiftUI and MapKit.</li>
-            <li>Worked with a senior tech lead to support funding milestones.</li>
-            <li>Stack included UIKit, SwiftUI, and Firebase.</li>
+            <li>Completing a three-month technical internship to further develop hands-on professional software engineering skills.</li>
         </ul>
     </section>
 
@@ -106,80 +45,48 @@
 
     <div class="pt-7">
         <div>
-            <h3 class="pb-1"><b>Apple Design Awards 2024</b></h3>
-            <h6 class="text-gray-600 font-medium text-xs">Shortlisted Regionally</h6>
+            <h3 class="pb-1"><b>Risk Management System (.NET Core / React)</b></h3>
+            <h6 class="text-gray-600 font-medium text-xs">Enterprise Web Application</h6>
             <p class="font-thin text-sm pb-2.5">
-                Analog was shortlisted by Apple South Asia Developer Relations team and submitted to Apple Cupertino HQ for consideration in Apple’s annual Design Award. Apple’s South Asia DR team praised Analog for its adherence to Apple’s Human Interaction guidelines while adding a unique UI spin to the application’s design
+                Designed and implemented a full-cycle enterprise web application for the University of Jordan featuring a multi-stage workflow and robust role-based access control (RBAC). Engineered a dynamic assessment engine that calculates real-time risk scores and generates interactive heat-map visualizations.
             </p>
         </div>
 
         <div class="pt-7">
-            <h3 class="pb-1"><b>Apple Entrepreneur Camp 2023</b></h3>
-            <h6 class="text-gray-600 font-medium text-xs">Accepted</h6>
+            <h3 class="pb-1"><b>E-Government Issue Reporting App</b></h3>
+            <h6 class="text-gray-600 font-medium text-xs">Cross-Platform Mobile Application</h6>
             <p class="font-thin text-sm pb-2.5">
-                Analog was accepted into Apple’s Entrepreneur Camp 2023, an international programme designed to support developers providing access to Apple Engineers and Leaders to accelerate the growth of their app-driven businesses.
+                Developed a cross-platform mobile application using Flutter enabling citizens to seamlessly report local infrastructure issues. Integrated Firebase for secure user authentication and implemented real-time backend synchronization for live issue tracking.
             </p>
         </div>
-        
         <div class="pt-7">
-            <h3 class="pb-1"><b>SAF Innovation Award 2023 - OMNIA Application by Signals Cloud & Digital Office</b></h3>
-            <h6 class="text-gray-600 font-medium text-xs">Awarded</h6>
+            <h3 class="pb-1"><b>Gymini</b></h3>
+            <h6 class="text-gray-600 font-medium text-xs">Mobile Application</h6>
             <p class="font-thin text-sm pb-2.5">
-                OMNIA web application was awarded SAF’s Innovation Award in 2023, it successfully served its purpose as a management app for Exercise Forging Sabre held in Idaho, USA.
-            </p>
-        </div>
-
-        <div class="pt-7">
-            <h3 class="pb-1"><b>Apple WWDC Scholar 2022</b></h3>
-            <h6 class="text-gray-600 font-medium text-xs">Awarded</h6>
-            <p class="font-thin text-sm pb-2.5">
-                Yet another successful attempt at Apple's international coding
-                competition. By making use of SwiftUI once more, I created a short app
-                experience that explores recursive art patterns and abstract art. With
-                the help of generative art, I was able to create a unique experience
-                that most people would have rarely come across.
-            </p>
-            <p class="font-thin text-sm pb-2.5">
-                Check out my submission
-                <a style="color: #ff5733" href="https://github.com/DonChiaQE/ReGen">here</a>!
-            </p>
-            <p class="font-thin text-sm pb-2.5">
-                As this news has only just recently reached me, I will be updating this
-                section once more when I have receive more news from Apple HQ.
+                Developed a Flutter-based coach and personal training management system designed to streamline fitness tracking and communication.
             </p>
         </div>
 
         <div class="pt-7">
-            <h3 class="pb-1"><b>Apple WWDC Scholar 2021</b></h3>
-            <h6 class="text-gray-600 font-medium text-xs">Awarded</h6>
+            <h3 class="pb-1"><b>JoWardrobe</b></h3>
+            <h6 class="text-gray-600 font-medium text-xs">Mobile Marketplace</h6>
             <p class="font-thin text-sm pb-2.5">
-                My second try at Apple's international coding competition was finally a
-                successful one. Making use of my prowess with web development, I decided
-                to create a Swift Playground project that taught users how to make use
-                of HTML and CSS to create a simple website.
+                Designed and planned a mobile marketplace application for clothing stores in Jordan to support local businesses and retail.
             </p>
+        </div>
+
+        <div class="pt-7">
+            <h3 class="pb-1"><b>Competitive Programming Highlights</b></h3>
+            <h6 class="text-gray-600 font-medium text-xs">ACM JU Mini Contests & JCPC</h6>
             <p class="font-thin text-sm pb-2.5">
-                Making use of Apple's SwiftUI framework as well as the nifty WKWebView
-                API, I managed to create a working editor that would allow users to
-                meddle with HTML and CSS. I proceeded to create a playground book
-                project around that idea and came up with a tutorial sequence for the
-                user to follow.
-            </p>
-            <p class="font-thin text-sm pb-2.5">
-                Check out my submission
-                <a style="color: #ff5733" href="https://github.com/DonChiaQE/WWDC2021">here</a>!
-            </p>
-            <p class="font-thin text-sm pb-2.5">
-                And check out my interview with the local news outlet regarding
-                NOSSAFLEX and my WWDC experience
-                <a style="color: #ff5733" href="https://www.youtube.com/watch?v=RwtzXxSSJAc">right here</a>!
+                Consistent high performer in problem-solving competitions, securing 2nd and 3rd place in the ACM JU Mini Contests (2023, 2024), and ranking 12th and 13th in the Jordanian Collegiate Programming Contests (JCPC).
             </p>
         </div>
     </div>
 
     <div class="pt-7">
         <h3 class="pb-1"><b>Résumé</b></h3>
-        <a style="color: #ff5733" href="/files/don_chia_resume.pdf" class="font-thin text-sm pb-2.5">Check out my résumé here.</a>
+        <a style="color: #ff5733" href="/files/resume.pdf" class="font-thin text-sm pb-2.5" target="_blank">Check out my résumé here.</a>
     </div>
 </div>
 </template>

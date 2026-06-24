@@ -8,22 +8,26 @@ const windowsStore = useWindowsStore()
 <template>
 <div style="display: flex; height: 100%; flex-direction: column">
     <nav class="download-bar">
-        <a href="/files/don_chia_resume.pdf" class="download" style="z-index: 10" download target="_blank">
+        <a href="/files/resume.pdf" class="download" style="z-index: 10" download target="_blank">
             <span style="display: flex" class="border">
                 <img src="@/assets/Resume/download.png" class="icon-image" />
                 <p style="margin-top: 2px">Download</p>
             </span>
         </a>
 
-        <a href="/files/don_chia_resume.pdf" class="download" style="z-index: 10" target="_blank">
+        <a href="/files/resume.pdf" class="download" style="z-index: 10" target="_blank">
             <span style="display: flex" class="border">
                 <img src="@/assets/Resume/open.png" class="icon-image" />
                 <p style="margin-top: 2px">Open In New Tab</p>
             </span>
         </a>
     </nav>
-    <div class="frame" style="z-index: 99">
-        <iframe class="frame" src="https://drive.google.com/file/d/1JAmr706oSCaI8PGpCNpA1ptNl5i3dvf_/preview"></iframe>
+    <div class="frame retro-placeholder" style="z-index: 99; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgb(192, 192, 192); border: 2px solid; border-color: rgb(128, 128, 128) white white rgb(128, 128, 128); padding: 20px; text-align: center;">
+        <img src="@/assets/win95Icons/resume.png" style="width: 32px; height: 32px; margin-bottom: 15px;" />
+        <p style="color: black; font-weight: bold; font-size: 14px; margin-bottom: 10px;">Résumé Preview</p>
+        <p style="color: rgb(80, 80, 80); font-size: 12px; max-width: 280px; line-height: 1.5;">
+            To view or print the résumé, please click on the **Download** or **Open In New Tab** button in the bar above.
+        </p>
         <span v-if="windowsStore.activeWindow != 'ResumeWindow'" style="bottom: 0; left: 0; width: 100%; height: 95%; position: absolute" class="overlay"></span>
     </div>
 </div>
