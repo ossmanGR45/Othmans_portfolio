@@ -1,6 +1,13 @@
-# [Windows 95 Themed Portfolio](https://donchia.tech)
+# Othman Qwakneh's Windows 95 Themed Portfolio
 
-<img width="1440" alt="Screenshot 2024-04-27 at 5 33 41 PM" src="https://github.com/DonChiaQE/win95/assets/24926784/d7a9171a-123e-4fe5-8be9-37ced35129c9">
+This is a customized version of the Windows 95-themed portfolio, modified to showcase my personal software engineering profile, skills, projects, and ICPC participation certificates.
+
+### 🌟 Credits & Original Work
+This repository is customized from the original [Windows 95 Themed Portfolio](https://github.com/DonChiaQE/win95) built by [Don Chia](https://github.com/DonChiaQE). A big thank you to him for the fantastic retro design and OS window mechanics!
+
+---
+
+<img width="1440" alt="Screenshot" src="https://github.com/DonChiaQE/win95/assets/24926784/d7a9171a-123e-4fe5-8be9-37ced35129c9">
 
 # Frameworks and Libraries used
 - Vue 3
