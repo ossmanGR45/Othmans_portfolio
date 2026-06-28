@@ -14,6 +14,7 @@ import Icpc2023 from './views/Icpc2023.vue'
 import Icpc2024 from './views/Icpc2024.vue'
 import ImagePreviewWindow from './templates/ImagePreviewWindow.vue'
 import StartMenu from './templates/StartMenu.vue'
+import RetroArrow from './templates/RetroArrow.vue'
 import {
     useWindowsStore
 } from './stores/windows'
@@ -106,6 +107,7 @@ onMounted(() => {
           </component>
         </div>
         <AppGrid />
+        <RetroArrow />
     </div>
     <StartMenu
       v-if="windowsStore.activeWindow == 'Menu'"
