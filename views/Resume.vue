@@ -22,13 +22,9 @@ const windowsStore = useWindowsStore()
             </span>
         </a>
     </nav>
-    <div class="frame retro-placeholder" style="z-index: 99; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgb(192, 192, 192); border: 2px solid; border-color: rgb(128, 128, 128) white white rgb(128, 128, 128); padding: 20px; text-align: center;">
-        <img src="@/assets/win95Icons/resume.png" style="width: 32px; height: 32px; margin-bottom: 15px;" />
-        <p style="color: black; font-weight: bold; font-size: 14px; margin-bottom: 10px;">Résumé Preview</p>
-        <p style="color: rgb(80, 80, 80); font-size: 12px; max-width: 280px; line-height: 1.5;">
-            To view or print the résumé, please click on the **Download** or **Open In New Tab** button in the bar above.
-        </p>
-        <span v-if="windowsStore.activeWindow != 'ResumeWindow'" style="bottom: 0; left: 0; width: 100%; height: 95%; position: absolute" class="overlay"></span>
+    <div class="frame" style="z-index: 99; display: flex; flex-direction: column; flex-grow: 1; background: rgb(192, 192, 192); border: 2px solid; border-color: rgb(128, 128, 128) white white rgb(128, 128, 128); position: relative; overflow: hidden; height: 100%;">
+        <iframe :src="`${useRuntimeConfig().app.baseURL}files/resume.pdf`" style="border: none; width: 100%; height: 100%; display: block;" title="Resume Preview"></iframe>
+        <span v-if="windowsStore.activeWindow != 'ResumeWindow'" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; z-index: 100;" class="overlay"></span>
     </div>
 </div>
 </template>
