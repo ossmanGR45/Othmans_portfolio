@@ -227,6 +227,541 @@ export const useWindowsStore = defineStore("windows", {
         showInNavbar: true,
       },
       {
+        windowId: "ProjectsWindow",
+        windowState: "close",
+        displayName: "GitHub Projects",
+        windowComponent: "FilesWindow",
+        windowContent: "",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "12vw",
+        positionY: "8vh",
+        iconImage: "projects.png",
+        altText: "GitHub Projects",
+        fullscreen: false,
+        showInAppGrid: false,
+        showInNavbar: true,
+        folderSize: 736287744,
+        folderContent: [
+          {
+            id: 0,
+            title: "campus-compass",
+            type: "project",
+            windowId: "ProjectCampusCompassWindow",
+            iconImage: "compass.png",
+            altText: "Campus Compass",
+            size: 256000,
+            repoUrl: "https://github.com/ossmanGR45/campus-compass"
+          },
+          {
+            id: 1,
+            title: "drawing-in-javafx",
+            type: "project",
+            windowId: "ProjectDrawingJavaFXWindow",
+            iconImage: "paint.png",
+            altText: "JavaFX Drawing App",
+            size: 4096,
+            repoUrl: "https://github.com/ossmanGR45/drawing-in-javafx"
+          },
+          {
+            id: 2,
+            title: "Risk-mangement-system",
+            type: "project",
+            windowId: "ProjectRiskManagementWindow",
+            iconImage: "shield.png",
+            altText: "Risk Management System",
+            size: 4227072,
+            repoUrl: "https://github.com/ossmanGR45/final-integrated-Risk-mangement-system"
+          },
+          {
+            id: 3,
+            title: "local-hybrid-rag",
+            type: "project",
+            windowId: "ProjectLocalHybridRagWindow",
+            iconImage: "brain.png",
+            altText: "Local Hybrid Search RAG",
+            size: 5120,
+            repoUrl: "https://github.com/ossmanGR45/local-hybrid-rag"
+          },
+          {
+            id: 4,
+            title: "local-rag-fastapi",
+            type: "project",
+            windowId: "ProjectLocalRagFastApiWindow",
+            iconImage: "server.png",
+            altText: "Local RAG FastAPI",
+            size: 4096,
+            repoUrl: "https://github.com/ossmanGR45/local-rag-fastapi"
+          },
+          {
+            id: 5,
+            title: "Othmans_portfolio",
+            type: "project",
+            windowId: "ProjectPortfolioWindow",
+            iconImage: "computer.png",
+            altText: "Windows 95 Portfolio",
+            size: 730291200,
+            repoUrl: "https://github.com/ossmanGR45/Othmans_portfolio"
+          },
+          {
+            id: 6,
+            title: "projectHCI",
+            type: "project",
+            windowId: "ProjectHciWindow",
+            iconImage: "monitor.png",
+            altText: "Project HCI",
+            size: 11264,
+            repoUrl: "https://github.com/ossmanGR45/projectHCI"
+          },
+          {
+            id: 7,
+            title: "QM-Risk-Core",
+            type: "project",
+            windowId: "ProjectQmWindow",
+            iconImage: "gear.png",
+            altText: "QM Enterprise Backend",
+            size: 1330176,
+            repoUrl: "https://github.com/ossmanGR45/QM"
+          },
+          {
+            id: 8,
+            title: "reporting-app",
+            type: "project",
+            windowId: "ProjectReportingWindow",
+            iconImage: "report.png",
+            altText: "E-Gov Issue Reporting",
+            size: 163840,
+            repoUrl: "https://github.com/ossmanGR45/reporting"
+          }
+        ]
+      },
+      {
+        windowId: "ProjectCampusCompassWindow",
+        windowState: "close",
+        displayName: "Campus Compass",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "14vw",
+        positionY: "12vh",
+        iconImage: "compass.png",
+        altText: "Campus Compass",
+        fullscreen: false,
+        showInAppGrid: true,
+        showInNavbar: true,
+        projectData: {
+          repoName: "campus-compass",
+          title: "Campus Compass",
+          subtitle: "University Campus Navigation & Student Services Platform",
+          iconImage: "compass.png",
+          language: "TypeScript",
+          languageColor: "#3178c6",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/campus-compass",
+          sizeBytes: 256000,
+          tags: ["React 18", "TypeScript", "Vite", "Supabase", "Tailwind CSS", "Radix UI", "TanStack Query", "Zod"],
+          summary: "A modern university navigation, student portal, and campus utility application. Engineered with React and TypeScript, leveraging Supabase for cloud authentication, real-time database queries, and secure session management.",
+          features: [
+            "Interactive campus navigation and facility locator for university students",
+            "Supabase integration for secure user auth, session management, and profile storage",
+            "Tailwind CSS & Radix UI accessible UI primitives with responsive layouts",
+            "TanStack Query for asynchronous data caching and optimistic UI updates",
+            "Schema-driven form validation with Zod and React Hook Form"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/campus-compass.git",
+            "cd campus-compass",
+            "npm install",
+            "npm run dev"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectDrawingJavaFXWindow",
+        windowState: "close",
+        displayName: "JavaFX Drawing App",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "16vw",
+        positionY: "14vh",
+        iconImage: "paint.png",
+        altText: "JavaFX Drawing App",
+        fullscreen: false,
+        showInAppGrid: true,
+        showInNavbar: true,
+        projectData: {
+          repoName: "drawing-in-javafx",
+          title: "JavaFX Drawing Application",
+          subtitle: "Interactive Desktop Drawing & Graphics Sketchpad",
+          iconImage: "paint.png",
+          language: "Java",
+          languageColor: "#b07219",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/drawing-in-javafx",
+          sizeBytes: 4096,
+          tags: ["Java", "JavaFX", "Object-Oriented Programming", "Event-Driven Architecture", "GUI"],
+          summary: "An interactive desktop drawing application built with JavaFX demonstrating proficiency in Object-Oriented Programming (OOP), modular GUI development, and event-driven architectures in Java.",
+          features: [
+            "Interactive canvas supporting dynamic stroke widths, colors, and brush modes",
+            "Vector drawing primitives including lines, rectangles, circles, and freehand curves",
+            "Event-driven architecture listening to mouse drag, click, and hover interactions",
+            "Clean separation of UI scene graph components and underlying canvas logic",
+            "Lightweight native desktop packaging running smoothly on cross-platform JVMs"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/drawing-in-javafx.git",
+            "cd drawing-in-javafx",
+            "mvn clean javafx:run"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectRiskManagementWindow",
+        windowState: "close",
+        displayName: "Risk Management System",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "18vw",
+        positionY: "10vh",
+        iconImage: "shield.png",
+        altText: "Risk Management System",
+        fullscreen: false,
+        showInAppGrid: true,
+        showInNavbar: true,
+        projectData: {
+          repoName: "final-integrated-Risk-mangement-system",
+          title: "Enterprise Risk Management System",
+          subtitle: "Institutional Decision Support & Dynamic Heat-Map Risk Engine",
+          iconImage: "shield.png",
+          language: "TypeScript",
+          languageColor: "#3178c6",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/final-integrated-Risk-mangement-system",
+          sizeBytes: 4227072,
+          tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "REST API", "Heatmap Matrix"],
+          summary: "Enterprise web application built for the University of Jordan featuring a multi-stage approval workflow, granular role-based access control (RBAC), and dynamic risk score calculations connected to ASP.NET Core services.",
+          features: [
+            "Multi-stage workflow with role-based access control (RBAC) for departments and admins",
+            "Dynamic assessment engine calculating probability × impact risk scores in real-time",
+            "Interactive 5x5 heat-map matrix visualizing organizational risk distribution",
+            "Comprehensive audit logs and automated mitigation action tracking",
+            "Synchronized with the QM .NET Core enterprise backend database"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/final-integrated-Risk-mangement-system.git",
+            "cd final-integrated-Risk-mangement-system",
+            "npm install",
+            "npm run dev"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectLocalHybridRagWindow",
+        windowState: "close",
+        displayName: "Local Hybrid RAG",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "20vw",
+        positionY: "12vh",
+        iconImage: "brain.png",
+        altText: "Local Hybrid Search RAG",
+        fullscreen: false,
+        showInAppGrid: true,
+        showInNavbar: true,
+        projectData: {
+          repoName: "local-hybrid-rag",
+          title: "Local Hybrid Search RAG Pipeline",
+          subtitle: "Privacy-First Offline AI Search with ChromaDB, BM25 & Ollama",
+          iconImage: "brain.png",
+          language: "Python",
+          languageColor: "#3572A5",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/local-hybrid-rag",
+          sizeBytes: 5120,
+          tags: ["Python", "FastAPI", "ChromaDB", "BM25", "Ollama", "RRF", "Vector Search"],
+          summary: "A 100% offline, privacy-first Retrieval-Augmented Generation (RAG) system combining Dense Vector Search (semantic similarity via ChromaDB) and Sparse Lexical Search (keyword precision via BM25) fused with Reciprocal Rank Fusion.",
+          features: [
+            "Hybrid retrieval combining dense vector similarity with BM25 sparse keyword search",
+            "Reciprocal Rank Fusion (RRF) algorithm to rerank and synthesize top candidate documents",
+            "100% offline local inference powered by Ollama with zero external API dependencies",
+            "FastAPI asynchronous REST interface for high-throughput document ingestion and querying",
+            "Smart overlapping document chunking optimizing context density for LLM responses"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/local-hybrid-rag.git",
+            "cd local-hybrid-rag",
+            "pip install -r requirements.txt",
+            "uvicorn app.main:app --reload"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectLocalRagFastApiWindow",
+        windowState: "close",
+        displayName: "Local RAG FastAPI",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "22vw",
+        positionY: "15vh",
+        iconImage: "server.png",
+        altText: "Local RAG FastAPI",
+        fullscreen: false,
+        showInAppGrid: true,
+        showInNavbar: true,
+        projectData: {
+          repoName: "local-rag-fastapi",
+          title: "Local RAG API with FastAPI",
+          subtitle: "Fast Vector Indexing & Semantic Retrieval with ChromaDB & Ollama",
+          iconImage: "server.png",
+          language: "Python",
+          languageColor: "#3572A5",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/local-rag-fastapi",
+          sizeBytes: 4096,
+          tags: ["Python", "FastAPI", "ChromaDB", "Ollama", "nomic-embed-text", "REST API"],
+          summary: "A privacy-centric local RAG backend built with FastAPI, ChromaDB, and Ollama. Uses nomic-embed-text embeddings for local embedding generation and fast vector search over private documents.",
+          features: [
+            "Local embedding computation using nomic-embed-text via Ollama",
+            "Persistent document indexing in local ChromaDB vector collections",
+            "Robust FastAPI endpoint architecture with strict Pydantic schemas",
+            "Configurable similarity distance thresholds and top-K parameter tuning",
+            "Offline execution ensuring data confidentiality and rapid response times"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/local-rag-fastapi.git",
+            "cd local-rag-fastapi",
+            "pip install -r requirements.txt",
+            "uvicorn main:app --reload"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectPortfolioWindow",
+        windowState: "close",
+        displayName: "Windows 95 Portfolio",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "15vw",
+        positionY: "11vh",
+        iconImage: "computer.png",
+        altText: "Windows 95 Portfolio",
+        fullscreen: false,
+        showInAppGrid: false,
+        showInNavbar: true,
+        projectData: {
+          repoName: "Othmans_portfolio",
+          title: "Windows 95 Themed Portfolio",
+          subtitle: "Retro Nostalgic Interactive Operating System Portfolio in Vue 3",
+          iconImage: "computer.png",
+          language: "Vue",
+          languageColor: "#41b883",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/Othmans_portfolio",
+          sizeBytes: 730291200,
+          tags: ["Vue 3", "Nuxt 3", "Pinia", "Tailwind CSS", "Interact.js", "Vite"],
+          summary: "An authentic, highly customized Windows 95 desktop environment running in the browser. Features draggable/resizable windows, active taskbar, Start Menu, File Explorer, custom icons, and project showcase.",
+          features: [
+            "Faithful Windows 95 aesthetic with authentic 3D beveled borders and typography",
+            "Multi-window management system with z-index stacking, minimize, maximize, and drag",
+            "Interactive Start Menu, App Grid, File Explorer with address bars, and Taskbar",
+            "Integrated portfolio views: Biography, Résumé viewer, ICPC contests, and GitHub Explorer",
+            "Nuxt 3 architecture with Pinia centralized state management and static deployment"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/Othmans_portfolio.git",
+            "cd Othmans_portfolio/win95",
+            "npm install",
+            "npm run dev"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectHciWindow",
+        windowState: "close",
+        displayName: "Project HCI",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "17vw",
+        positionY: "13vh",
+        iconImage: "monitor.png",
+        altText: "Project HCI",
+        fullscreen: false,
+        showInAppGrid: true,
+        showInNavbar: true,
+        projectData: {
+          repoName: "projectHCI",
+          title: "Human-Computer Interaction (HCI) Prototype",
+          subtitle: "Usability-Focused Form Workflows & Interactive Message Interfaces",
+          iconImage: "monitor.png",
+          language: "HTML",
+          languageColor: "#e34c26",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/projectHCI",
+          sizeBytes: 11264,
+          tags: ["HTML5", "CSS3", "JavaScript", "HCI", "Usability Engineering", "UI/UX"],
+          summary: "A Human-Computer Interaction prototype evaluating interface usability principles, progressive input flows, interactive form validation, and user messaging patterns.",
+          features: [
+            "Multi-stage interactive form interfaces designed to minimize user error",
+            "Custom CSS styling testing visual hierarchy and input focus micro-interactions",
+            "Responsive message layout evaluating clarity and cognitive load",
+            "Clean vanilla JavaScript implementation without heavy external dependencies",
+            "Heuristic evaluation design patterns adhering to classic Nielsen usability guidelines"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/projectHCI.git",
+            "cd projectHCI",
+            "# Open homepage.html in any modern browser"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectQmWindow",
+        windowState: "close",
+        displayName: "QM Risk Backend Core",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "19vw",
+        positionY: "16vh",
+        iconImage: "gear.png",
+        altText: "QM Enterprise Backend",
+        fullscreen: false,
+        showInAppGrid: false,
+        showInNavbar: true,
+        projectData: {
+          repoName: "QM",
+          title: "QM Enterprise Risk & Quality Core",
+          subtitle: "High-Performance ASP.NET Core Clean Architecture Backend",
+          iconImage: "gear.png",
+          language: "C#",
+          languageColor: "#178600",
+          defaultBranch: "master",
+          repoUrl: "https://github.com/ossmanGR45/QM",
+          sizeBytes: 1330176,
+          tags: ["C#", "ASP.NET Core", "Entity Framework Core", "SQL Server", "Clean Architecture", "JWT"],
+          summary: "Enterprise quality management and institutional risk assessment backend built with C# and ASP.NET Core. Designed with Clean Architecture and Domain-Driven Design (DDD) to support complex multi-department risk calculations.",
+          features: [
+            "Multi-layered Clean Architecture (DataAccess, Models, Utility, and API presentation)",
+            "Entity Framework Core ORM with migrations, seeders, and relational mappings",
+            "Comprehensive domain models: Risks, Strategic Goals, Departments, Actions, and Audits",
+            "Secure token-based JWT authentication and granular role-based authorization",
+            "Unit testing suite validating score calculations and enterprise data integrity"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/QM.git",
+            "cd QM",
+            "dotnet restore",
+            "dotnet run --project WebApplication2"
+          ]
+        }
+      },
+      {
+        windowId: "ProjectReportingWindow",
+        windowState: "close",
+        displayName: "E-Gov Issue Reporting",
+        windowComponent: "window",
+        windowContent: "project-detail",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "21vw",
+        positionY: "18vh",
+        iconImage: "report.png",
+        altText: "E-Gov Issue Reporting",
+        fullscreen: false,
+        showInAppGrid: true,
+        showInNavbar: true,
+        projectData: {
+          repoName: "reporting",
+          title: "E-Government Civic Issue Reporting App",
+          subtitle: "Cross-Platform Flutter Mobile Application for Municipal Services",
+          iconImage: "report.png",
+          language: "Dart",
+          languageColor: "#00B4AB",
+          defaultBranch: "main",
+          repoUrl: "https://github.com/ossmanGR45/reporting",
+          sizeBytes: 163840,
+          tags: ["Flutter", "Dart", "Firebase Auth", "Cloud Firestore", "Mobile", "Cross-Platform"],
+          summary: "A cross-platform mobile application developed with Flutter enabling citizens to report civic infrastructure issues (road damage, utility outages, public safety hazards) with live status tracking and Firebase integration.",
+          features: [
+            "Cross-platform iOS and Android mobile app built with Dart & Flutter",
+            "Firebase Authentication for verified citizen access and identity protection",
+            "Cloud Firestore backend synchronization for real-time ticket creation and tracking",
+            "Media upload capability allowing photo and geolocation attachment to reports",
+            "Administrative workflow updating incident resolution statuses in real time"
+          ],
+          quickstart: [
+            "git clone https://github.com/ossmanGR45/reporting.git",
+            "cd reporting",
+            "flutter pub get",
+            "flutter run"
+          ]
+        }
+      },
+      {
         windowId: "PhotosWindow", // Unique ID
         windowState: "close", // Window State [open, close, minimize]
         displayName: "Photos", // Display Name (title under icon)

@@ -175,7 +175,7 @@ const openWindow = (file) => {
             position: "absolute",
             positionX: getRndInteger(1, 10) + "vw",
             positionY: getRndInteger(1, 25) + "vh",
-            iconImage: "folder.png",
+            iconImage: file.iconImage || "folder.png",
             altText: file.title,
             fullscreen: false,
             showInAppGrid: false,
@@ -189,6 +189,15 @@ const openWindow = (file) => {
         }
         windowsStore.pushNewWindow(addWindowPayload)
         windowsStore.setWindowState(openWindowPayload)
+    } else if (file.type == 'project' || file.windowId) {
+        if (file.windowId) {
+            windowsStore.setWindowState({
+                windowState: "open",
+                windowId: file.windowId
+            });
+        } else if (file.repoUrl) {
+            window.open(file.repoUrl, '_blank');
+        }
     } else if (file.type == "video") {
         console.log("SKIP")
     } else {
@@ -290,7 +299,7 @@ onMounted(() => {
             : 'top-bar-deactivated'
         " @dblclick="toggleWindowSize">
         <div class="window-name">
-            <img class="icon-image" src="@/assets/win95Icons/folder.png" :alt="window.altText" />{{ window.displayName }}
+            <img class="icon-image" :src="getImagePath(window.iconImage || 'folder.png')" :alt="window.altText" />{{ window.displayName }}
         </div>
         <div class="triple-button">
             <button class="minimize-button button" @click="minimizeWindow">
@@ -329,15 +338,23 @@ onMounted(() => {
                 <span style="margin-right: 12px"><u>H</u>elp </span>
             </div>
         </div>
+        <div class="address-bar-container">
+            <span class="address-label"><u>A</u>ddress</span>
+            <div class="address-input">
+                <img class="address-icon" :src="getImagePath(window.iconImage || 'folder.png')" />
+                <span class="address-text">C:\Projects\GitHub\{{ window.displayName }}</span>
+            </div>
+        </div>
         <div
         class="file-explorer "
         @click.self="size = folderSize"
         ref="fileExplorer"
         >
         <nav class="grid-container-photos" :style="{ height: gridHeight }">
-            <li v-for="file in files" :key="file.key">
-                <button class="icon-photos" @click="setSize(file)" @touchstart="openWindow(file)" @dblclick="openWindow(file)">
-                    <img v-if="file.type == 'photo'" class="icon-image-photos"  src="@/assets/FileWindow/image.png" :alt="file.altText" />
+            <li v-for="file in files" :key="file.id || file.title">
+                <button class="icon-photos" @click="setSize(file)" @touchstart="openWindow(file)" @dblclick="openWindow(file)" :title="file.altText || file.title">
+                    <img v-if="file.iconImage" class="icon-image-photos" :src="getImagePath(file.iconImage)" :alt="file.altText" />
+                    <img v-else-if="file.type == 'photo'" class="icon-image-photos"  src="@/assets/FileWindow/image.png" :alt="file.altText" />
                     <img v-else-if="file.type == 'folder'" class="icon-image-photos" src="@/assets/FileWindow/folder.png" :alt="file.altText" />
                     <img v-else-if="file.type == 'file'" class="icon-image-photos" src="@/assets/FileWindow/file.png" :alt="file.altText" />
                     <img v-else-if="file.type == 'video'" class="icon-image-photos" src="@/assets/FileWindow/video.png" :alt="file.altText" />
@@ -413,7 +430,49 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 0 !important;
+  align-content: flex-start;
+  min-height: 100%;
+}
+
+.address-bar-container {
+  display: flex;
+  align-items: center;
+  padding: 2px 6px 4px 6px;
+  font-size: 11px;
+  gap: 6px;
+  background: rgb(192, 192, 192);
+  border-bottom: 1px solid rgb(128, 128, 128);
+}
+
+.address-label {
+  font-size: 11px;
+  color: black;
+}
+
+.address-input {
+  flex-grow: 1;
+  background: white;
+  border-top: 1px solid rgb(128, 128, 128);
+  border-left: 1px solid rgb(128, 128, 128);
+  border-right: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(255, 255, 255);
+  padding: 1px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.address-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.address-text {
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .file-explorer {

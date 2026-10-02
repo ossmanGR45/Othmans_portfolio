@@ -1,9 +1,28 @@
+<script setup>
+import { useWindowsStore } from '@/stores/windows'
+const windowsStore = useWindowsStore()
+
+const openProjects = () => {
+    windowsStore.setWindowState({
+        windowState: "open",
+        windowId: "ProjectsWindow"
+    });
+    windowsStore.setActiveWindow("ProjectsWindow");
+    windowsStore.zIndexIncrement("ProjectsWindow");
+}
+</script>
+
 <template>
 <div class="menu" style="z-index: 1000000">
     <div class="sidebar">
         <img class="sidebar-image" src="@/assets/sidebar-image.png" />
     </div>
     <div class="socials">
+        <div class="bar" @click="openProjects" style="cursor: pointer;">
+            <img class="social-image" src="@/assets/win95Icons/projects.png" />
+            <div class="social-text"><u>P</u>rojects</div>
+        </div>
+        <div class="divider"></div>
         <a href="https://www.instagram.com/othmanqwakneh/" target="_blank">
             <div class="bar">
                 <img class="social-image" src="@/assets/iPhone-Icons/Instagram.webp" />
@@ -50,7 +69,8 @@
 <style scoped>
 .menu {
     width: 165px;
-    height: 242px;
+    height: auto;
+    min-height: 275px;
     background: black;
     background: rgb(195, 195, 195);
     overflow: hidden;

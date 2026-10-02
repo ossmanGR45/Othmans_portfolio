@@ -14,16 +14,30 @@ const openWindow = (windowId) => {
     windowsStore.setWindowState(payload)
 }
 
-const openGithub = () => {
-    window.open("https://github.com/DonChiaQE");
+let lastClickTime = 0
+let lastClickedId = null
+
+const handleClick = (windowId) => {
+    const now = Date.now()
+    if (lastClickedId === windowId && now - lastClickTime < 500) {
+        openWindow(windowId)
+        lastClickedId = null
+    } else {
+        lastClickedId = windowId
+        lastClickTime = now
+    }
 }
 
+const openGithub = () => {
+    window.open("https://github.com/ossmanGR45");
+}
 
 const getImagePath = (iconImage) => {
+    if (!iconImage) return '';
     const path = `../assets/win95Icons/${iconImage}`;
     const modules = import.meta.glob("../assets/win95Icons/*", { eager: true });
     const mod = modules[path]
-    return mod.default;
+    return mod ? mod.default : '';
 };
 
 onMounted(() => {
@@ -34,14 +48,16 @@ onMounted(() => {
 
 <template>
     <nav class="grid-container" :style="{ height: gridHeight }">
-    <li v-for="window in windowsStore.windows" :key="window.key">
+    <li v-for="window in windowsStore.windows" :key="window.windowId || window.key">
       <button
         class="icon"
         v-if="window.showInAppGrid != false"
+        @click="handleClick(window.windowId)"
         @touchstart="openWindow(window.windowId)"
         @dblclick="openWindow(window.windowId)"
+        :title="window.altText || window.displayName"
       >
-      <img class="icon-image" :src=getImagePath(window.iconImage) :alt="window.altText" />
+      <img class="icon-image" :src="getImagePath(window.iconImage)" :alt="window.altText" />
         <div class="border-box">
           <p class="icon-text">
             {{ window.displayName }}

@@ -15,6 +15,7 @@ import Icpc2024 from './views/Icpc2024.vue'
 import ImagePreviewWindow from './templates/ImagePreviewWindow.vue'
 import StartMenu from './templates/StartMenu.vue'
 import RetroArrow from './templates/RetroArrow.vue'
+import ProjectDetail from './views/ProjectDetail.vue'
 import {
     useWindowsStore
 } from './stores/windows'
@@ -36,7 +37,8 @@ const slotViews = [
   { name: 'wwdc2022', comp: Wwdc2022 },
   { name: 'wwdc2023', comp: Wwdc2023 },
   { name: 'icpc2023', comp: Icpc2023 },
-  { name: 'icpc2024', comp: Icpc2024 }
+  { name: 'icpc2024', comp: Icpc2024 },
+  { name: 'project-detail', comp: ProjectDetail }
 ]
 
 const windowCheck = (windowId) => {
@@ -102,7 +104,11 @@ onMounted(() => {
             v-if="windowCheck(window.windowId)" 
           >
           <template v-slot:content>
-            <component :is="slotViews.find(comp => comp.name === window.windowContent).comp"></component>
+            <component 
+              :is="slotViews.find(comp => comp.name === window.windowContent)?.comp" 
+              :projectData="window.projectData"
+              :windowId="window.windowId"
+            ></component>
           </template>
           </component>
         </div>
