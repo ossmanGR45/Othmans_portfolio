@@ -360,7 +360,7 @@ const filteredProjects = () => {
       <!-- ALL PROJECTS SHOWCASE -->
       <section id="projects-sec" class="content-block">
         <div class="block-tag">SOFTWARE PORTFOLIO</div>
-        <h2 class="block-heading">Engineered Projects (All 10 Included)</h2>
+        <h2 class="block-heading">Engineered Projects</h2>
         <p class="block-subtitle">Full-cycle enterprise systems, mobile applications, AI pipelines, and algorithmic solutions.</p>
 
         <!-- Category Filters -->
