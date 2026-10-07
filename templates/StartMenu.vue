@@ -10,6 +10,20 @@ const openProjects = () => {
     windowsStore.setActiveWindow("ProjectsWindow");
     windowsStore.zIndexIncrement("ProjectsWindow");
 }
+
+const openMinesweeper = () => {
+    windowsStore.setWindowState({
+        windowState: "open",
+        windowId: "MinesweeperWindow"
+    });
+    windowsStore.setActiveWindow("MinesweeperWindow");
+    windowsStore.zIndexIncrement("MinesweeperWindow");
+}
+
+const openFuture = () => {
+    windowsStore.setActiveWindow("");
+    windowsStore.triggerTimeWarp('future');
+}
 </script>
 
 <template>
@@ -18,9 +32,17 @@ const openProjects = () => {
         <img class="sidebar-image" src="@/assets/sidebar-image.png" />
     </div>
     <div class="socials">
+        <div class="bar" @click="openFuture" style="cursor: pointer; background: rgba(0, 240, 255, 0.12);">
+            <img class="social-image" src="@/assets/win95Icons/future.png" />
+            <div class="social-text" style="color: #000080; font-weight: bold;">🚀 <u>F</u>uture (2026)</div>
+        </div>
         <div class="bar" @click="openProjects" style="cursor: pointer;">
             <img class="social-image" src="@/assets/win95Icons/projects.png" />
             <div class="social-text"><u>P</u>rojects</div>
+        </div>
+        <div class="bar" @click="openMinesweeper" style="cursor: pointer;">
+            <img class="social-image" src="@/assets/win95Icons/minesweeper.png" />
+            <div class="social-text"><u>M</u>inesweeper</div>
         </div>
         <div class="divider"></div>
         <a href="https://www.instagram.com/othmanqwakneh/" target="_blank">

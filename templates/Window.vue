@@ -123,6 +123,8 @@ let isDragging = false;
 
 onMounted(() => {
     window.value = windowsStore.getWindowById(ComponentName)
+    if (window.value?.windowWidth) w.value = window.value.windowWidth
+    if (window.value?.windowHeight) h.value = window.value.windowHeight
     const draggableWindow = interact("#" + window.value.windowId)
     draggableWindow
         .draggable({
@@ -175,8 +177,8 @@ onMounted(() => {
             modifiers: [
                 interact.modifiers.restrictSize({
                     min: {
-                        width: 400,
-                        height: 400
+                        width: window.value?.windowMinWidth || (w.value < 400 ? w.value : 300),
+                        height: window.value?.windowMinHeight || (h.value < 400 ? h.value : 300)
                     },
                     max: {
                         width: document.getElementById('screen').clientWidth - position.value.x,

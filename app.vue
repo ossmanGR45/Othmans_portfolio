@@ -15,7 +15,12 @@ import Icpc2024 from './views/Icpc2024.vue'
 import ImagePreviewWindow from './templates/ImagePreviewWindow.vue'
 import StartMenu from './templates/StartMenu.vue'
 import RetroArrow from './templates/RetroArrow.vue'
+import Clippy from './templates/Clippy.vue'
+import DesktopPortal from './templates/DesktopPortal.vue'
+import TimeWarp from './templates/TimeWarp.vue'
 import ProjectDetail from './views/ProjectDetail.vue'
+import Minesweeper from './views/Minesweeper.vue'
+import ModernPortfolio from './views/ModernPortfolio.vue'
 import {
     useWindowsStore
 } from './stores/windows'
@@ -38,7 +43,8 @@ const slotViews = [
   { name: 'wwdc2023', comp: Wwdc2023 },
   { name: 'icpc2023', comp: Icpc2023 },
   { name: 'icpc2024', comp: Icpc2024 },
-  { name: 'project-detail', comp: ProjectDetail }
+  { name: 'project-detail', comp: ProjectDetail },
+  { name: 'minesweeper', comp: Minesweeper }
 ]
 
 const windowCheck = (windowId) => {
@@ -113,13 +119,21 @@ onMounted(() => {
           </component>
         </div>
         <AppGrid />
+        <DesktopPortal @open="windowsStore.triggerTimeWarp('future')" />
         <RetroArrow />
+        <Clippy />
     </div>
     <StartMenu
       v-if="windowsStore.activeWindow == 'Menu'"
       style="position: absolute; z-index: 9999; left: 0; bottom: 36px"
     ></StartMenu>
     <navbar style="position: absolute; bottom: 0; z-index: 9999" id="navbar" />
+
+    <!-- Modern 2026 Portfolio View -->
+    <ModernPortfolio v-if="windowsStore.isFutureMode" />
+
+    <!-- Quantum Time Travel Hyperspace Warp -->
+    <TimeWarp v-if="windowsStore.isTimeWarping" />
   </div>
 </template>
 

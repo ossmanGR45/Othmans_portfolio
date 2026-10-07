@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -28,10 +29,11 @@ jobs:
 
       - name: Static HTML Generation 🏗️
         run: |
-          if [ "${{ github.event.repository.name }}" = "${{ github.repository_owner }}.github.io" ]; then
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          if [ "$REPO_NAME" = "${{ github.repository_owner }}.github.io" ]; then
             export NUXT_APP_BASE_URL="/"
           else
-            export NUXT_APP_BASE_URL="/${{ github.event.repository.name }}/"
+            export NUXT_APP_BASE_URL="/$REPO_NAME/"
           fi
           echo "Setting baseURL to: $NUXT_APP_BASE_URL"
           npm run generate

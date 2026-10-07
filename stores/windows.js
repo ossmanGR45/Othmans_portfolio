@@ -13,6 +13,11 @@ export const useWindowsStore = defineStore("windows", {
     // Z-index State
     zIndex: 2,
 
+    // Time Machine / Future Mode State
+    isFutureMode: false,
+    isTimeWarping: false,
+    timeWarpDirection: 'future',
+
     windows: [
       {
         windowId: "BiographyWindow", // Unique ID
@@ -225,6 +230,52 @@ export const useWindowsStore = defineStore("windows", {
         fullscreen: false,
         showInAppGrid: true,
         showInNavbar: true,
+      },
+      {
+        windowId: "MinesweeperWindow",
+        windowState: "close",
+        displayName: "Minesweeper",
+        windowComponent: "window",
+        windowContent: "minesweeper",
+        windowContentPadding: {
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+        position: "absolute",
+        positionX: "18vw",
+        positionY: "10vh",
+        iconImage: "minesweeper.png",
+        altText: "Minesweeper",
+        fullscreen: false,
+        windowWidth: 340,
+        windowHeight: 410,
+        windowMinWidth: 260,
+        windowMinHeight: 320,
+        showInAppGrid: true,
+        showInNavbar: true,
+      },
+      {
+        windowId: "FutureWindow",
+        windowState: "close",
+        displayName: "Take Me to the Future",
+        windowComponent: "window",
+        windowContent: "",
+        windowContentPadding: {
+          top: null,
+          right: null,
+          bottom: null,
+          left: null,
+        },
+        position: "absolute",
+        positionX: "20vw",
+        positionY: "25vh",
+        iconImage: "future.png",
+        altText: "Take Me to the Future",
+        fullscreen: false,
+        showInAppGrid: false,
+        showInNavbar: false,
       },
       {
         windowId: "ProjectsWindow",
@@ -1992,6 +2043,18 @@ export const useWindowsStore = defineStore("windows", {
             } else {
                 console.log("Error: windowState not found or invalid");
             }
+        },
+
+        triggerTimeWarp(direction = 'future') {
+            if (this.isTimeWarping) return;
+            this.timeWarpDirection = direction;
+            this.isTimeWarping = true;
+            setTimeout(() => {
+                this.isFutureMode = (direction === 'future');
+                setTimeout(() => {
+                    this.isTimeWarping = false;
+                }, 700);
+            }, 1300);
         },
     }
 });

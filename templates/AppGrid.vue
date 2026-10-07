@@ -7,6 +7,10 @@ const windowsStore = useWindowsStore()
 const gridHeight = ref("")
 
 const openWindow = (windowId) => {
+    if (windowId === 'FutureWindow') {
+        windowsStore.triggerTimeWarp('future');
+        return;
+    }
     const payload = {
         windowState: "open",
         windowId: windowId
@@ -51,6 +55,7 @@ onMounted(() => {
     <li v-for="window in windowsStore.windows" :key="window.windowId || window.key">
       <button
         class="icon"
+        :class="{ 'future-icon-pulse': window.windowId === 'FutureWindow' }"
         v-if="window.showInAppGrid != false"
         @click="handleClick(window.windowId)"
         @touchstart="openWindow(window.windowId)"
@@ -67,3 +72,26 @@ onMounted(() => {
     </li>
   </nav>
 </template>
+
+<style scoped>
+.future-icon-pulse {
+  position: relative;
+}
+
+.future-icon-pulse .icon-image {
+  filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.7));
+  animation: cosmicPulse 2.5s ease-in-out infinite;
+}
+
+.future-icon-pulse .icon-text {
+  color: #00ffff !important;
+  text-shadow: 0 0 4px rgba(0, 240, 255, 0.8);
+  font-weight: bold;
+}
+
+@keyframes cosmicPulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.6)); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(255, 0, 128, 0.9)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.6)); }
+}
+</style>
