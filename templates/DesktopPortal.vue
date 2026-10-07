@@ -37,9 +37,8 @@ const enterPortal = () => {
 <style scoped>
 .portal-wrapper {
   position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 28px;
+  right: 36px;
   z-index: 6;
   display: flex;
   flex-direction: column;
@@ -52,7 +51,19 @@ const enterPortal = () => {
 }
 
 .portal-wrapper:hover {
-  transform: translate(-50%, -50%) scale(1.08);
+  transform: scale(1.08);
+}
+
+@media (max-width: 640px) {
+  .portal-wrapper {
+    top: 16px;
+    right: 16px;
+    transform: scale(0.82);
+    transform-origin: top right;
+  }
+  .portal-wrapper:hover {
+    transform: scale(0.9);
+  }
 }
 
 /* Concentric rotating energy rings */
