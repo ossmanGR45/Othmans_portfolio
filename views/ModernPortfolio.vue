@@ -1,8 +1,75 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import FutureOrbit from '@/templates/FutureOrbit.vue'
 import { useWindowsStore } from '@/stores/windows'
 
 const windowsStore = useWindowsStore()
+const portfolio = ref(null)
+const terminalScreen = ref(null)
+const progress = ref(0)
+const activeSection = ref('hero-sec')
+const motionEnabled = ref(true)
+const navigation = [
+  ['about-sec', 'About'], ['jcpc-sec', 'JCPC Honors'], ['projects-sec', 'Projects'],
+  ['skills-sec', 'Skills'], ['terminal-sec', 'Terminal'], ['contact-sec', 'Contact']
+]
+let revealObserver
+let motionPreference
+let scrollFrame = 0
+
+const updateScroll = () => {
+  if (scrollFrame) return
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = 0
+    const root = portfolio.value
+    if (!root) return
+    const distance = root.scrollHeight - root.clientHeight
+    progress.value = distance > 0 ? root.scrollTop / distance : 0
+    const threshold = root.getBoundingClientRect().top + 180
+    let current = 'hero-sec'
+    root.querySelectorAll('section[id]').forEach(section => {
+      if (section.getBoundingClientRect().top <= threshold) current = section.id
+    })
+    activeSection.value = current
+  })
+}
+
+const lightCard = event => {
+  if (!motionEnabled.value || event.pointerType === 'touch') return
+  const card = event.target.closest('.project-box, .jcpc-card, .skill-group, .contact-box, .metric-item')
+  if (!card) return
+  const bounds = card.getBoundingClientRect()
+  card.style.setProperty('--light-x', `${event.clientX - bounds.left}px`)
+  card.style.setProperty('--light-y', `${event.clientY - bounds.top}px`)
+}
+
+const syncMotion = () => { motionEnabled.value = !motionPreference.matches }
+onMounted(() => {
+  motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
+  syncMotion()
+  motionPreference.addEventListener('change', syncMotion)
+  if ('IntersectionObserver' in window) {
+    revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          revealObserver.unobserve(entry.target)
+        }
+      })
+    }, { root: portfolio.value, threshold: 0.08 })
+    portfolio.value.querySelectorAll('.content-block > *, .metric-item').forEach((element, index) => {
+      element.classList.add('scroll-reveal')
+      element.style.setProperty('--reveal-delay', `${index % 4 * 70}ms`)
+      revealObserver.observe(element)
+    })
+  }
+  updateScroll()
+})
+onBeforeUnmount(() => {
+  revealObserver?.disconnect()
+  motionPreference?.removeEventListener('change', syncMotion)
+  cancelAnimationFrame(scrollFrame)
+})
 
 // Active category filter for projects
 const activeFilter = ref('all')
@@ -17,7 +84,7 @@ const terminalHistory = ref([
 ])
 const terminalInput = ref('')
 
-const handleTerminalCommand = () => {
+const handleTerminalCommand = async () => {
   const cmd = terminalInput.value.trim().toLowerCase()
   if (!cmd) return
 
@@ -65,6 +132,8 @@ const handleTerminalCommand = () => {
   }
 
   terminalInput.value = ''
+  await nextTick()
+  terminalScreen.value?.scrollTo({ top: terminalScreen.value.scrollHeight, behavior: motionEnabled.value ? 'smooth' : 'instant' })
 }
 
 const returnTo1995 = () => {
@@ -72,9 +141,13 @@ const returnTo1995 = () => {
 }
 
 const scrollTo = (id) => {
+  if (id === 'hero-sec') {
+    portfolio.value?.scrollTo({ top: 0, behavior: motionEnabled.value ? 'smooth' : 'instant' })
+    return
+  }
   const el = document.getElementById(id)
   if (el) {
-    el.scrollIntoView({ behavior: 'smooth' })
+    el.scrollIntoView({ behavior: motionEnabled.value ? 'smooth' : 'instant', block: 'start' })
   }
 }
 
@@ -172,35 +245,33 @@ const allProjects = [
   }
 ]
 
-const filteredProjects = () => {
+const filteredProjects = computed(() => {
   if (activeFilter.value === 'all') return allProjects
   return allProjects.filter(p => p.category === activeFilter.value)
-}
+})
 </script>
 
 <template>
-  <div class="green-portfolio">
+  <div ref="portfolio" class="green-portfolio" :class="{ 'motion-off': !motionEnabled }" @scroll.passive="updateScroll" @pointermove.passive="lightCard">
+    <div class="ambient-field" aria-hidden="true"><div class="ambient-orb"></div></div>
+    <div class="reading-progress" :style="{ transform: `scaleX(${progress})` }" aria-hidden="true"></div>
     <!-- Top Matrix Green Header -->
     <header class="site-header">
       <div class="header-inner">
-        <div class="brand" @click="scrollTo('hero-sec')">
-          <div class="brand-glyph">🟢</div>
+        <a class="brand" href="#hero-sec" @click.prevent="scrollTo('hero-sec')">
+          <div class="brand-glyph">OQ<span>_</span></div>
           <div>
             <div class="brand-title">Othman Qwakneh</div>
             <div class="brand-sub">ENGINEERING PORTFOLIO // 2026</div>
           </div>
-        </div>
+        </a>
 
-        <nav class="nav-menu">
-          <a href="#about-sec" @click.prevent="scrollTo('about-sec')">About</a>
-          <a href="#jcpc-sec" @click.prevent="scrollTo('jcpc-sec')">JCPC Honors</a>
-          <a href="#projects-sec" @click.prevent="scrollTo('projects-sec')">All Projects</a>
-          <a href="#skills-sec" @click.prevent="scrollTo('skills-sec')">Skills</a>
-          <a href="#terminal-sec" @click.prevent="scrollTo('terminal-sec')">Terminal</a>
-          <a href="#contact-sec" @click.prevent="scrollTo('contact-sec')">Contact</a>
+        <nav class="nav-menu" aria-label="Portfolio sections">
+          <a v-for="[id, label] in navigation" :key="id" :href="`#${id}`" :aria-current="activeSection === id ? 'location' : undefined" @click.prevent="scrollTo(id)">{{ label }}</a>
         </nav>
 
         <div class="header-actions">
+          <button class="motion-toggle" :aria-pressed="motionEnabled" @click="motionEnabled = !motionEnabled">Motion {{ motionEnabled ? 'on' : 'off' }}</button>
           <a 
             :href="`${useRuntimeConfig().app.baseURL}files/resume.pdf`" 
             target="_blank" 
@@ -218,14 +289,17 @@ const filteredProjects = () => {
     <div class="main-body">
       <!-- HERO SECTION -->
       <section id="hero-sec" class="hero-block">
+        <div class="arrival-label"><span>1995</span><span class="arrival-line"></span><span>2026 / ARRIVAL CONFIRMED</span></div>
+        <div class="hero-layout">
+        <div class="hero-copy">
         <div class="status-chip">
           <span class="status-pulse"></span>
           <span>SOFTWARE ENGINEER • ASP.NET CORE &amp; FLUTTER • DUAL JCPC FINALIST</span>
         </div>
 
         <h1 class="hero-headline">
-          Building Resilient Backends &amp;
-          <span class="highlight-green">High-Performance Mobile Systems</span>
+          Built with logic.<br />
+          <span class="highlight-green">Made for what’s next.</span>
         </h1>
 
         <p class="hero-summary">
@@ -249,6 +323,11 @@ const filteredProjects = () => {
             ⏪ Back to 1995
           </button>
         </div>
+
+        </div>
+        <FutureOrbit :motion-enabled="motionEnabled" />
+        </div>
+        <button class="explore-cue" @click="scrollTo('jcpc-sec')"><span>↓</span> SCROLL TO EXPLORE <span class="explore-coordinates">AMMAN, JO / 31.95° N</span></button>
 
         <!-- Key Metrics Strip -->
         <div class="metrics-strip">
@@ -368,6 +447,7 @@ const filteredProjects = () => {
           <button 
             class="filter-btn" 
             :class="{ active: activeFilter === 'all' }"
+            :aria-pressed="activeFilter === 'all'"
             @click="activeFilter = 'all'"
           >
             All Projects (10)
@@ -375,6 +455,7 @@ const filteredProjects = () => {
           <button 
             class="filter-btn" 
             :class="{ active: activeFilter === 'fullstack' }"
+            :aria-pressed="activeFilter === 'fullstack'"
             @click="activeFilter = 'fullstack'"
           >
             Full-Stack &amp; .NET Core
@@ -382,6 +463,7 @@ const filteredProjects = () => {
           <button 
             class="filter-btn" 
             :class="{ active: activeFilter === 'mobile' }"
+            :aria-pressed="activeFilter === 'mobile'"
             @click="activeFilter = 'mobile'"
           >
             Mobile (Flutter)
@@ -389,6 +471,7 @@ const filteredProjects = () => {
           <button 
             class="filter-btn" 
             :class="{ active: activeFilter === 'ai' }"
+            :aria-pressed="activeFilter === 'ai'"
             @click="activeFilter = 'ai'"
           >
             AI &amp; RAG Pipelines
@@ -396,6 +479,7 @@ const filteredProjects = () => {
           <button 
             class="filter-btn" 
             :class="{ active: activeFilter === 'systems' }"
+            :aria-pressed="activeFilter === 'systems'"
             @click="activeFilter = 'systems'"
           >
             Systems &amp; Java
@@ -403,9 +487,10 @@ const filteredProjects = () => {
         </div>
 
         <!-- Projects Grid -->
-        <div class="projects-grid">
+        <p class="project-count" role="status">{{ String(filteredProjects.length).padStart(2, '0') }} / 10 projects in view</p>
+        <TransitionGroup name="project" tag="div" class="projects-grid">
           <div 
-            v-for="project in filteredProjects()" 
+            v-for="project in filteredProjects"
             :key="project.id" 
             class="project-box"
           >
@@ -428,7 +513,7 @@ const filteredProjects = () => {
               </a>
             </div>
           </div>
-        </div>
+        </TransitionGroup>
       </section>
 
       <!-- ABOUT & EXPERIENCE -->
@@ -550,7 +635,7 @@ const filteredProjects = () => {
             <div class="term-indicator"></div>
             <div class="term-title">othman@green-terminal:~ (2026.10)</div>
           </div>
-          <div class="term-screen">
+          <div ref="terminalScreen" class="term-screen" role="log" aria-live="polite" aria-label="Terminal output">
             <div v-for="(entry, idx) in terminalHistory" :key="idx" class="term-line" :class="entry.type">
               {{ entry.text }}
             </div>
@@ -563,6 +648,7 @@ const filteredProjects = () => {
               class="term-input" 
               placeholder="Type 'jcpc', 'projects', 'skills', or '1995'..."
               autocomplete="off"
+              aria-label="Terminal command"
             />
           </form>
         </div>
@@ -1594,4 +1680,71 @@ const filteredProjects = () => {
     display: none;
   }
 }
+
+/* Future environment: all effects stay inside this scroll surface. */
+.green-portfolio { background: #060d0b; isolation: isolate; scrollbar-width: thin; scrollbar-color: #285b45 #060d0b; }
+.green-portfolio::-webkit-scrollbar { width: 6px; background: #060d0b; }
+.green-portfolio::-webkit-scrollbar-thumb { background: #285b45; border: 0; border-radius: 8px; }
+.ambient-field { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background-image: radial-gradient(#76e4b019 .65px, transparent .65px); background-size: 28px 28px; mask-image: linear-gradient(black, #0004); }
+.ambient-orb { position: absolute; top: -300px; right: -180px; width: 950px; height: 950px; border-radius: 50%; background: radial-gradient(ellipse, #0c6b4533, transparent 65%); animation: atmosphere 16s ease-in-out infinite alternate; }
+.reading-progress { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: #a0ffd4; transform-origin: left; z-index: 202; box-shadow: 0 0 12px #73ffc0; pointer-events: none; }
+.site-header { background: #060d0bd9; backdrop-filter: blur(20px); }
+.header-inner { gap: 20px; max-width: 1400px; padding: 18px 32px; }
+.brand { text-decoration: none; flex-shrink: 0; }
+.brand-glyph { font: 600 18px ui-monospace, monospace; border: 1px solid #90edbf40; padding: 10px 7px; border-radius: 8px; color: #c0ffe1; }
+.brand-glyph span { color: #64dca4; }
+.brand-title { font-size: 13px; }.brand-sub { font-size: 8px; letter-spacing: 1px; }
+.nav-menu { gap: 19px; }.nav-menu a { font-size: 12px; position: relative; padding: 8px 0; }
+.nav-menu a[aria-current] { color: #b6fbd8; }
+.nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: #79ebaf; transform: scaleX(0); transition: transform .25s; transform-origin: left; }
+.nav-menu a[aria-current]::after, .nav-menu a:hover::after { transform: scaleX(1); }
+.motion-toggle { color: #a1bdae; background: transparent; border: 1px solid #91deb52b; border-radius: 6px; padding: 8px 10px; font: 10px ui-monospace, monospace; cursor: pointer; white-space: nowrap; }
+.btn-retro, .btn-resume { font-size: 11px; white-space: nowrap; }
+.main-body { max-width: 1280px; padding-inline: 48px; }
+.hero-block { padding: 34px 0 50px; }
+.arrival-label { display: flex; align-items: center; gap: 12px; font: 9px ui-monospace, monospace; letter-spacing: 2px; color: #7f9e8c; margin-bottom: 38px; }
+.arrival-label > span:first-child { color: #52695c; }.arrival-line { height: 1px; width: 65px; background: linear-gradient(90deg, #355943, #97e6bc); }
+.hero-layout { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: 54px; }
+.hero-copy { min-width: 0; animation: arrival .9s cubic-bezier(.16, 1, .3, 1) both; }
+.hero-headline { font-size: clamp(40px, 4.7vw, 68px); line-height: 1.06; font-weight: 600; letter-spacing: -3px; margin-bottom: 26px; }
+.highlight-green { display: inline-block; color: #a1f1c6; background: linear-gradient(120deg, #d3ffe7, #69d8a0); background-clip: text; -webkit-text-fill-color: transparent; }
+.status-chip { padding: 0; border: 0; background: none; font: 8px ui-monospace, monospace; letter-spacing: 1.2px; line-height: 1.7; color: #88b59c; margin-bottom: 24px; }
+.status-pulse { width: 5px; height: 5px; flex-shrink: 0; background: #a1f1c6; animation: signal 3s ease-in-out infinite; }
+.hero-summary { font-size: 14px; line-height: 1.9; color: #8ca699; max-width: 560px; }
+.hero-summary b { font-weight: 500; color: #c2d8cb; }
+.hero-buttons { gap: 10px; margin: 0; }.hero-buttons button { font-size: 11px; padding: 12px 17px; border-radius: 6px; }
+.hero-buttons .btn-time-rewind { display: none; }.btn-primary { background: #b1f7cf; color: #062416; }
+.btn-accent { border-color: #5d9e773d; background: #112c1d6b; color: #acd9bb; }
+.explore-cue { display: flex; align-items: center; gap: 12px; background: none; border: 0; padding: 32px 0; width: 100%; color: #809b8c; font: 8px ui-monospace, monospace; letter-spacing: 2px; cursor: pointer; text-align: left; }
+.explore-cue > span:first-child { color: #b2f6ce; font-size: 18px; animation: scroll-cue 2.5s ease-in-out infinite; }
+.explore-coordinates { margin-left: auto; color: #4f715e; }
+.metrics-strip { padding-top: 24px; gap: 14px; }.metric-item { background: #0d1b1480; padding: 22px; border-color: #84cfa422; }
+.metric-val { font: 500 25px ui-monospace, monospace; color: #bbf2ce; }.metric-title { font-size: 12px; font-weight: 500; }.metric-desc { color: #7f9e8a; font-size: 10px; }
+.content-block { padding: 76px 0; scroll-margin-top: 120px; }.block-tag { font: 9px ui-monospace, monospace; letter-spacing: 2.5px; color: #8cd8ac; }.block-heading { letter-spacing: -1px; font-weight: 600; }.block-subtitle { color: #8ba394; }
+.project-box, .jcpc-card, .skill-group, .contact-box, .metric-item { position: relative; background-image: radial-gradient(350px circle at var(--light-x, -500px) var(--light-y, -500px), #87f4b313, transparent 70%); transition: border-color .3s, box-shadow .3s; }
+.project-box:hover, .jcpc-card:hover, .skill-group:hover, .contact-box:hover, .metric-item:hover { border-color: #9ae7b766; box-shadow: 0 10px 40px #0002; }
+.project-box { background-color: #0b1912b3; }.proj-name { letter-spacing: -.4px; }.proj-desc { color: #94ab9c; }.proj-link { transition: color .2s, gap .2s; }.proj-link:hover { color: #d0ffe3; gap: 18px; }
+.filter-strip { gap: 8px; }.filter-btn { border-radius: 999px; font-size: 11px; }.filter-btn.active { background: #9aefbe; color: #082c17; border-color: #9aefbe; }
+.project-count { font: 9px ui-monospace, monospace; letter-spacing: 1.5px; color: #7a9c87; margin: 0 0 22px; }
+.projects-grid { position: relative; align-items: stretch; }.project-enter-active { transition: opacity .35s, transform .35s; }.project-leave-active { transition: opacity .15s; position: absolute; pointer-events: none; }.project-enter-from { opacity: 0; transform: translateY(20px); }.project-leave-to { opacity: 0; }
+.scroll-reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--reveal-delay, 0ms), transform .8s cubic-bezier(.16, 1, .3, 1) var(--reveal-delay, 0ms); }
+.scroll-reveal.is-visible { opacity: 1; transform: none; }
+.term-box { box-shadow: 0 20px 70px #0004; }.term-bar { background: #13251a; }.term-input:focus { outline: none; }.term-form:focus-within { box-shadow: inset 0 -2px #9befbc; }
+.floating-dock-btn { background: #0e2419e6; backdrop-filter: blur(12px); border-color: #8dd9aa50; font: 10px ui-monospace, monospace; padding: 12px 16px; }
+.site-footer { padding-bottom: 90px; }
+.green-portfolio :is(button, a, input):focus-visible { outline: 2px solid #b6fbd8; outline-offset: 5px; }
+.motion-off { scroll-behavior: auto; }.motion-off *, .motion-off *::before, .motion-off *::after { animation: none !important; transition: none !important; }.motion-off .scroll-reveal { opacity: 1; transform: none; }
+@keyframes atmosphere { to { transform: translate(-100px, 180px); } }
+@keyframes arrival { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes signal { 50% { box-shadow: 0 0 14px #a1f1c6; opacity: .5; } }
+@keyframes scroll-cue { 50% { transform: translateY(5px); } }
+@media (max-width: 1150px) { .header-inner { flex-wrap: wrap; gap: 10px; }.nav-menu { order: 3; width: 100%; justify-content: center; gap: 28px; }.header-actions { margin-left: auto; }.hero-layout { gap: 28px; }.main-body { padding-inline: 32px; } }
+@media (max-width: 768px) {
+  .header-inner { padding: 12px 20px; }.brand-sub { display: none; }.brand-glyph { font-size: 14px; padding: 6px; }.header-actions { gap: 7px; }.btn-resume { display: none; }.btn-retro { padding: 8px; font-size: 10px; }.motion-toggle { font-size: 9px; padding: 8px; }
+  .nav-menu { display: flex; justify-content: flex-start; overflow-x: auto; gap: 24px; scrollbar-width: none; }.nav-menu a { white-space: nowrap; font-size: 11px; }
+  .main-body { padding-inline: 22px; }.hero-layout { grid-template-columns: 1fr; gap: 32px; }.hero-headline { font-size: clamp(42px, 9vw, 64px); letter-spacing: -2px; }.arrival-label { margin-bottom: 30px; letter-spacing: 1px; font-size: 8px; }.hero-summary { max-width: none; }.hero-buttons { margin-bottom: 0; }
+  .metrics-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }.metric-item { padding: 16px; }.metric-val { font-size: 20px; }.explore-coordinates { display: none; }.content-block { padding: 48px 0; scroll-margin-top: 135px; }.block-heading { font-size: 26px; }.floating-dock-btn { bottom: 14px; right: 14px; }
+}
+@media (max-width: 380px) { .brand-title { display: none; }.main-body { padding-inline: 16px; }.metric-val { font-size: 17px; } }
+@media (prefers-reduced-motion: reduce) { .green-portfolio { scroll-behavior: auto; }.green-portfolio *, .green-portfolio *::before, .green-portfolio *::after { animation: none !important; transition: none !important; }.scroll-reveal { opacity: 1; transform: none; } }
 </style>
